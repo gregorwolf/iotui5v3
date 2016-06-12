@@ -1,0 +1,124 @@
+<mvc:View
+		controllerName="com.csw.iotui5v3.controller.Master"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:semantic="sap.m.semantic">
+
+	<semantic:MasterPage
+			id="page"
+			title="{masterView>/title}"
+			navButtonPress="onNavBack"
+			showNavButton="true">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField
+							id="searchField"
+							showRefreshButton="{= !${device>/support/touch} }"
+							tooltip="{i18n>masterSearchTooltip}"
+							width="100%"
+							search="onSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+
+		<semantic:content>
+			<PullToRefresh
+					id="pullToRefresh"
+					visible="{device>/support/touch}"
+					refresh="onRefresh" />
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List
+					id="list"
+					items="{
+						path: '/sensors',
+						parameters:{expand : 'last_measurement'},
+						sorter: {
+							path: 'id',
+							descending: false
+							},
+	                    filters: [{ 
+	                        path: 'inactive', 
+	                        operator: 'EQ', 
+	                        value1: '0'
+	                    }],
+						groupHeaderFactory: '.createGroupHeader'
+					}"
+					busyIndicatorDelay="{masterView>/delay}"
+					noDataText="{masterView>/noDataText}"
+					mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished="onUpdateFinished"
+					selectionChange="onSelectionChange">
+				<infoToolbar>
+					<Toolbar
+							active="true"
+							id="filterBar"
+							visible="{masterView>/isFilterBarVisible}"
+							press="onOpenViewSettings">
+						<Title
+								id="filterBarLabel"
+								text="{masterView>/filterBarLabel}" />
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem
+							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+							press="onSelectionChange"
+							title="{description}"
+							icon="{path:'last_measurement/unit', formatter:'.formatter.unitIcon'}"
+							number="{
+								path: 'last_measurement/value',
+								formatter: '.formatter.temperatureValue'
+							}"
+							numberUnit="{last_measurement/unit}"
+							intro="{device}">
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+
+		<semantic:sort>
+			<semantic:SortSelect
+					id="sort"
+					selectedKey="{masterView>/sortBy}"
+					change="onSort">
+				<core:Item
+						id="masterSort1"
+						key="description"
+						text="{i18n>masterSort1}"/>
+				<core:Item
+						id="masterSort2"
+						key="lastMeasurement"
+						text="{i18n>masterSort2}"/>
+			</semantic:SortSelect>
+		</semantic:sort>
+
+		<semantic:filter>
+			<semantic:FilterAction
+					id="filter"
+					press="onOpenViewSettings" />
+		</semantic:filter>
+
+		<semantic:group>
+			<semantic:GroupSelect
+					id="group"
+					selectedKey="{masterView>/groupBy}"
+					change="onGroup">
+				<core:Item
+						id="masterGroupNone"
+						key="None"
+						text="{i18n>masterGroupNone}"/>
+				<core:Item
+						id="masterGroup1"
+						key="lastMeasurement"
+						text="{i18n>masterGroup1}"/>
+			</semantic:GroupSelect>
+		</semantic:group>
+
+	</semantic:MasterPage>
+
+</mvc:View>

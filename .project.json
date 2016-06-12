@@ -1,0 +1,62 @@
+{
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "excludedFolders": [
+      "test"
+    ],
+    "excludedFiles": [
+      "test.html"
+    ],
+    "buildRequired": false,
+    "lastBuildDateTime": "Thu, 21 Apr 2016 18:03:23 GMT"
+  },
+  "generation": [
+    {
+      "templateId": "sap.ui.ui5-template-plugin.2masterdetail",
+      "templateVersion": "1.34.5",
+      "dateTimeStamp": "Mon, 18 Apr 2016 15:33:54 GMT"
+    }
+  ],
+  "mockpreview": {
+    "mockUri": "/destinations/XSOdataProxy/s0001142741trial/xsdemo/hello/odata/iotscenario.xsodata",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "basevalidator": {
+    "validators": [
+      {
+        "validatorID": "fioriJsValidator",
+        "configuration": {
+          "rules": {},
+          "additionalRuleMetadata": {}
+        }
+      },
+      {
+        "validatorID": "fioriXmlAnalysis"
+      }
+    ],
+    "services": {
+      "js": "fioriJsValidator",
+      "xml": "fioriXmlAnalysis"
+    }
+  },
+  "hcpdeploy": {
+    "account": "s0001142741trial",
+    "name": "iotui5v3",
+    "lastVersionWeTriedToDeploy": "0.0.3"
+  }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema Namespace="s0001142741trial.xsdemo.hello.odata.iotscenario"
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="sensorsType">
+                <Key>
+                    <PropertyRef Name="id" />
+                </Key>
+                <Property Name="id" Type="Edm.Int64" Nullable="false" />
+                <Property Name="device" Type="Edm.String" Nullable="false" MaxLength="50" />
+                <Property Name="type" Type="Edm.String" Nullable="false" MaxLength="50" />
+                <Property Name="lastMeasurement" Type="Edm.Int64" />
+                <Property Name="description" Type="Edm.String" MaxLength="250" />
+                <Property Name="userName" Type="Edm.String" MaxLength="256" />
+                <Property Name="inactive" Type="Edm.String" MaxLength="1" />
+                <NavigationProperty Name="sensor_measurements" Relationship="s0001142741trial.xsdemo.hello.odata.iotscenario.sensor_measurementsType" FromRole="sensorsPrincipal" ToRole="measurementsDependent" />
+                <NavigationProperty Name="last_measurement" Relationship="s0001142741trial.xsdemo.hello.odata.iotscenario.last_measurementType" FromRole="sensorsPrincipal" ToRole="measurementsDependent" />
+            </EntityType>
+            <EntityType Name="measurementsType">
+                <Key>
+                    <PropertyRef Name="id" />
+                </Key>
+                <Property Name="id" Type="Edm.Int64" Nullable="false" />
+                <Property Name="storedAt" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="sensorId" Type="Edm.Int64" Nullable="false" />
+                <Property Name="value" Type="Edm.Double" Nullable="false" />
+                <Property Name="unit" Type="Edm.String" Nullable="false" MaxLength="30" />
+                <Property Name="measuredAt" Type="Edm.DateTime" Nullable="false" />
+            </EntityType>
+            <Association Name="sensor_measurementsType">
+                <End Type="s0001142741trial.xsdemo.hello.odata.iotscenario.sensorsType" Role="sensorsPrincipal" Multiplicity="1"/>
+                <End Type="s0001142741trial.xsdemo.hello.odata.iotscenario.measurementsType" Role="measurementsDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="last_measurementType">
+                <End Type="s0001142741trial.xsdemo.hello.odata.iotscenario.sensorsType" Role="sensorsPrincipal" Multiplicity="1"/>
+                <End Type="s0001142741trial.xsdemo.hello.odata.iotscenario.measurementsType" Role="measurementsDependent" Multiplicity="1"/>
+            </Association>
+            <EntityContainer Name="iotscenario" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="sensors" EntityType="s0001142741trial.xsdemo.hello.odata.iotscenario.sensorsType" />
+                <EntitySet Name="measurements" EntityType="s0001142741trial.xsdemo.hello.odata.iotscenario.measurementsType" />
+                <AssociationSet Name="sensor_measurements" Association="s0001142741trial.xsdemo.hello.odata.iotscenario.sensor_measurementsType">
+                    <End Role="sensorsPrincipal" EntitySet="sensors"/>
+                    <End Role="measurementsDependent" EntitySet="measurements"/>
+                </AssociationSet>
+                <AssociationSet Name="last_measurement" Association="s0001142741trial.xsdemo.hello.odata.iotscenario.last_measurementType">
+                    <End Role="sensorsPrincipal" EntitySet="sensors"/>
+                    <End Role="measurementsDependent" EntitySet="measurements"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,60 @@
+<mvc:View
+		controllerName="com.csw.iotui5v3.controller.Detail"
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:semantic="sap.m.semantic">
+
+	<semantic:DetailPage
+			id="page"
+			navButtonPress="onNavBack"
+			showNavButton="{device>/system/phone}"
+			title="{i18n>detailTitle}"
+			busy="{detailView>/busy}"
+			busyIndicatorDelay="{detailView>/delay}">
+
+		<semantic:content>
+			<ObjectHeader
+					id="objectHeader"
+					title="{description}"
+					icon="{path:'last_measurement/unit', formatter:'.formatter.unitIcon'}"
+					number="{
+								path: 'last_measurement/value',
+								formatter: '.formatter.temperatureValue'
+					}"
+					numberUnit="{last_measurement/unit}"
+					intro="{device}">
+			</ObjectHeader>
+			<IconTabBar
+					id="iconTabBar"
+					class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+							id="iconTabBarFilter1"
+							icon="sap-icon://hint"
+							tooltip="{i18n>detailIconTabBarInfo}">
+                        <content>
+                            <core:Fragment fragmentName="com.csw.iotui5v3.view.DetailData" type="XML" />
+                        </content>
+					</IconTabFilter>
+					<IconTabFilter
+							id="iconTabBarFilter2"
+							icon="sap-icon://line-chart"
+							tooltip="{i18n>detailIconTabBarLineChart}">
+                        <content>
+							<core:Fragment fragmentName="com.csw.iotui5v3.view.DetailLineChart" type="XML" />
+                        </content>
+                    </IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+					id="shareEmail"
+					press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+
+	</semantic:DetailPage>
+
+</mvc:View>
