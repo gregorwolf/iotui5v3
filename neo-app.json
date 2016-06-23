@@ -40,7 +40,7 @@
       "path": "/destinations/XSOdataProxy",
       "target": {
         "type": "destination",
-        "name": "HANAMDC"
+        "name": "HANAMDC_IOT"
       },
       "description": "XSOdata via HANA Auth Proxy"
     }
