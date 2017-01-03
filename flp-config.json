@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "iotui5v3",
+        "description": "Smart Home",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#iotui5v3-Display",
+        "navigationComponentName": "com.csw.iotui5v3",
+        "intentSemanticObject": "iotui5v3",
+        "intentAction": "Display",
+        "html5ApplicationName": "iotui5v3",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "10e13205-7c84-442e-b6a7-83b8caeb9cfd-1425978472254"
+        ],
+        "contentPackages": [
+            "db4ebaa7-4ba8-4c0b-8171-cb709884fd8a-1425978572688"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Smart Home",
+        "subtitle": "Sensor Data",
+        "searchKeywords": "Smart Home,Sensor Data",
+        "displayIconUrl": "sap-icon://home",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

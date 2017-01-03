@@ -13,7 +13,7 @@
       "test.html"
     ],
     "buildRequired": false,
-    "lastBuildDateTime": "Sun, 12 Jun 2016 19:35:39 GMT"
+    "lastBuildDateTime": "Fri, 04 Nov 2016 22:52:11 GMT"
   },
   "generation": [
     {
@@ -57,6 +57,6 @@
   "hcpdeploy": {
     "account": "s0001142741trial",
     "name": "iotui5v3",
-    "lastVersionWeTriedToDeploy": "0.0.4"
+    "lastVersionWeTriedToDeploy": "0.0.7"
   }
 }

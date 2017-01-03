@@ -45,11 +45,20 @@
       "description": "XSOdata via HANA Auth Proxy"
     }
   ],
+  "securityConstraints": [
+       {
+            "permission": "AccessApplicationDescriptor",
+            "description": "Access application descriptor",
+            "protectedPaths": [
+               "/neo-app.json"
+            ]
+       }
+  ],
   "cacheControl": [
     {
       "directive": "private",
       "maxAge": 0,
-      "path": "*html"
+      "path": "**.html"
     },
     {
       "directive": "private",
